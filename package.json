@@ -1,0 +1,33 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "TODO application to create a project and list the different tasks to be performed.",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "devDependencies": {
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.8.0",
+    "stylelint-scss": "^3.17.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoboArkano/TODO-List.git"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "Roberto Perez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LoboArkano/TODO-List/issues"
+  },
+  "homepage": "https://github.com/LoboArkano/TODO-List#readme"
+}
