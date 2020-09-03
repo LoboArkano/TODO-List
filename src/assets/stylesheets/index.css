@@ -1,0 +1,139 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.border-R5 {
+  border-radius: 5px;
+}
+
+.d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.justify-between {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.wrap {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.header {
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+}
+
+.projects,
+.todos {
+  height: calc(100vh - 80px);
+  overflow-y: hidden;
+}
+
+.projects {
+  width: 20%;
+  background-color: aquamarine;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.projects:hover {
+  overflow-y: scroll;
+}
+
+.projects .project {
+  padding: 10px 5px;
+  background-color: dodgerblue;
+  margin: 0 2.5% 8px;
+  text-align: center;
+}
+
+.projects .project:hover {
+  margin-left: 1%;
+  margin-right: 1%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+
+.todos {
+  width: 80%;
+  background-color: #00e0e0;
+}
+
+.todos:hover {
+  overflow-y: scroll;
+}
+
+.todos .todo {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #01bbbb;
+  margin: 15px 2%;
+  padding: 20px 2%;
+}
+
+.todos .todo:hover {
+  background-color: #01a7a7;
+}
+
+.todos .todo .info {
+  margin-bottom: 25px;
+}
+
+.todos .todo .info .status {
+  text-align: right;
+}
+
+.todos .todo .info .status .dueDate {
+  margin-bottom: 10px;
+}
+
+.todos .todo details {
+  width: 80%;
+}
+
+.todos .todo details .summary {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 7px;
+  background-color: crimson;
+}
+
+.todos .todo details .summary:hover {
+  cursor: pointer;
+}
+
+.todos .todo details .description,
+.todos .todo details .note {
+  margin-top: 26px;
+}
+
+.todos .todo details .desc-text,
+.todos .todo details .note-text {
+  margin-top: 10px;
+  width: 80%;
+  padding: 8px;
+  background-color: aliceblue;
+  max-height: 150px;
+  overflow: hidden;
+}
+
+.todos .todo details .desc-text:hover,
+.todos .todo details .note-text:hover {
+  overflow-y: scroll;
+}
+/*# sourceMappingURL=index.css.map */
