@@ -54,6 +54,18 @@ $crimson: rgb(220, 20, 60);
   height: 13px;
 }
 
+.alert-low {
+  filter: invert(96%) sepia(1%) saturate(6696%) hue-rotate(226deg) brightness(103%) contrast(104%);
+}
+
+.alert-normal {
+  filter: invert(78%) sepia(87%) saturate(1635%) hue-rotate(355deg) brightness(98%) contrast(108%);
+}
+
+.alert-critical {
+  filter: invert(20%) sepia(87%) saturate(3083%) hue-rotate(348deg) brightness(83%) contrast(118%);
+}
+
 .header {
   height: $header-height;
   text-align: center;
