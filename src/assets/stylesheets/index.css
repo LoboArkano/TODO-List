@@ -13,10 +13,22 @@
   display: flex;
 }
 
+.justify-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .justify-between {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.align-center {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .wrap {
@@ -24,14 +36,77 @@
       flex-wrap: wrap;
 }
 
+.pos-abs {
+  position: absolute;
+}
+
 .w-100 {
   width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.d-none {
+  display: none;
+}
+
+.icon {
+  height: 13px;
 }
 
 .header {
   height: 80px;
   text-align: center;
   line-height: 80px;
+}
+
+.form-container {
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.267);
+  -webkit-animation-name: show;
+          animation-name: show;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+}
+
+.form-container .form {
+  padding: 25px;
+  background-color: white;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.form-container .form .label,
+.form-container .form .input {
+  margin-top: 10px;
+}
+
+.form-container .form .input {
+  padding: 10px 15px;
+  font-weight: bold;
+}
+
+.form-container .form .add-btn {
+  margin-top: 15px;
+  border: 1px solid #08f500;
+}
+
+.form-container .form .cancel-btn {
+  margin-top: 8px;
+  border: 1px solid red;
+}
+
+.form-container .form .add-btn,
+.form-container .form .cancel-btn {
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.form-container .form .add-btn:hover,
+.form-container .form .cancel-btn:hover {
+  cursor: pointer;
 }
 
 .projects,
@@ -135,5 +210,27 @@
 .todos .todo details .desc-text:hover,
 .todos .todo details .note-text:hover {
   overflow-y: scroll;
+}
+
+@-webkit-keyframes show {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
+  }
+  to {
+    background-color: rgba(255, 255, 255, 0.267);
+    opacity: 1;
+  }
+}
+
+@keyframes show {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
+  }
+  to {
+    background-color: rgba(255, 255, 255, 0.267);
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=index.css.map */
