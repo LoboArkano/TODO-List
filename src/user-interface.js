@@ -1,5 +1,41 @@
+import { projectForm, todoForm } from './form';
+
 const projectsArray = ['project 1', 'project2', 'project 3'];
 const todosArray = ['todo 1', 'todo 2', 'todo 3'];
+
+const addProject = () => {
+  const addBtn = document.createElement('div');
+
+  addBtn.classList.add('project', 'border-R5');
+  addBtn.innerHTML = 'ADD PROJECT';
+  addBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const formCont = document.getElementById('project-form-cont');
+
+    projectForm();
+    formCont.classList.remove('d-none');
+  });
+
+  return addBtn;
+};
+
+const addTodo = () => {
+  const addBtn = document.createElement('div');
+
+  addBtn.classList.add('todo', 'd-flex', 'border-R5');
+  addBtn.innerHTML = 'ADD TODO';
+  addBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const formCont = document.getElementById('project-form-cont');
+
+    todoForm();
+    formCont.classList.remove('d-none');
+  });
+
+  return addBtn;
+};
 
 const projectItem = (project) => {
   const projectItem = document.createElement('div');
@@ -17,6 +53,7 @@ const projectInterface = () => {
   const projects = document.createElement('div');
 
   projects.classList.add('projects');
+  projects.appendChild(addProject());
   projectsArray.map(project => projects.appendChild(projectItem(project)));
 
   return projects;
@@ -83,6 +120,7 @@ const todoInterface = () => {
   const todos = document.createElement('div');
 
   todos.classList.add('todos');
+  todos.appendChild(addTodo());
   todosArray.map(todo => todos.appendChild(todoItem(todo)));
 
   return todos;

@@ -1,3 +1,47 @@
+import { createProject, createTodo } from './controller';
+
+const addBtn = (text) => {
+  const addBtn = document.createElement('div');
+
+  addBtn.classList.add('btn', 'w-100', 'add-btn');
+  addBtn.innerHTML = text;
+
+  return addBtn;
+};
+
+const addProject = () => {
+  const addProject = addBtn('Add Project');
+
+  createProject(addProject);
+
+  return addProject;
+};
+
+const addTodo = () => {
+  const addTodo = addBtn('Add Todo');
+
+  createTodo(addTodo);
+
+  return addTodo;
+};
+
+const cancel = () => {
+  const cancelBtn = document.createElement('div');
+
+  cancelBtn.classList.add('btn', 'w-100', 'cancel-btn');
+  cancelBtn.innerHTML = 'Cancel';
+
+  cancelBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const formCont = document.getElementById('project-form-cont');
+
+    formCont.classList.add('d-none');
+  });
+
+  return cancelBtn;
+};
+
 const formCont = () => {
   const projectFormCont = document.createElement('div');
 
@@ -8,24 +52,20 @@ const formCont = () => {
 };
 
 const projectForm = () => {
-  const projectFormCont = formCont();
+  const projectFormCont = document.getElementById('project-form-cont');
   const projectForm = document.createElement('form');
   const title = document.createElement('label');
   const input = document.createElement('input');
-  const addBtn = document.createElement('div');
-  const cancelBtn = document.createElement('div');
+  const addBtn = addProject();
+  const cancelBtn = cancel();
 
   projectForm.classList.add('form', 'd-flex', 'w-50', 'border-R5');
   title.classList.add('label', 'w-100');
   input.classList.add('input', 'w-50');
-  addBtn.classList.add('btn', 'w-100', 'add-btn');
-  cancelBtn.classList.add('btn', 'w-100', 'cancel-btn');
   projectForm.setAttribute('id', 'project-form');
   input.setAttribute('type', 'text');
   input.setAttribute('id', 'project-title');
   title.innerHTML = 'Project Name:';
-  addBtn.innerHTML = 'Add Project';
-  cancelBtn.innerHTML = 'Cancel';
 
   projectForm.append(title, input, addBtn, cancelBtn);
   projectFormCont.innerHTML = '';
@@ -35,7 +75,7 @@ const projectForm = () => {
 };
 
 const todoForm = () => {
-  const projectFormCont = formCont();
+  const projectFormCont = document.getElementById('project-form-cont');
   const projectForm = document.createElement('form');
   const title = document.createElement('label');
   const inputTitle = document.createElement('input');
@@ -47,8 +87,8 @@ const todoForm = () => {
   const inputDesc = document.createElement('input');
   const note = document.createElement('label');
   const inputNote = document.createElement('input');
-  const addBtn = document.createElement('div');
-  const cancelBtn = document.createElement('div');
+  const addBtn = addTodo();
+  const cancelBtn = cancel();
   const labels = [title, dueDate, priority, description, note];
   const inputs = [inputTitle, inputDueDate, inputPriority, inputDesc, inputNote];
 
@@ -59,8 +99,6 @@ const todoForm = () => {
   inputs.forEach((input) => {
     input.classList.add('input', 'w-50');
   });
-  addBtn.classList.add('btn', 'w-100', 'add-btn');
-  cancelBtn.classList.add('btn', 'w-100', 'cancel-btn');
 
   projectForm.setAttribute('id', 'project-form');
   inputs.forEach((input) => {
@@ -77,14 +115,13 @@ const todoForm = () => {
   priority.innerHTML = 'Priority:';
   description.innerHTML = 'Description:';
   note.innerHTML = 'Note:';
-  addBtn.innerHTML = 'Add Project';
-  cancelBtn.innerHTML = 'Cancel';
 
   projectForm.append(title, inputTitle, dueDate, inputDueDate, priority, inputPriority);
   projectForm.append(note, inputNote, description, inputDesc, addBtn, cancelBtn);
+  projectFormCont.innerHTML = '';
   projectFormCont.appendChild(projectForm);
 
   return projectFormCont;
 };
 
-export { projectForm, todoForm };
+export { formCont, projectForm, todoForm };
