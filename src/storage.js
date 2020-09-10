@@ -14,7 +14,7 @@ const LocalStorageModule = (() => {
     const projects = [];
 
     arrKeys.forEach((key) => {
-      projects.push(localStorage.getItem(key));
+      projects.push(new Map(JSON.parse(localStorage.getItem(key))));
     });
 
     return projects;

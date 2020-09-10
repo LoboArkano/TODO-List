@@ -42,4 +42,10 @@ const createTodo = (btn) => {
   });
 };
 
-export { createProject, createTodo };
+const getProjectsTitle = () => {
+  const projects = LocalStorageModule.getAllProjects();
+
+  return projects;
+};
+
+export { createProject, createTodo, getProjectsTitle };

@@ -1,6 +1,6 @@
 import { projectForm, todoForm } from './form';
+import { getProjectsTitle } from './controller';
 
-const projectsArray = ['project 1', 'project2', 'project 3'];
 const todosArray = ['todo 1', 'todo 2', 'todo 3'];
 
 const addProject = () => {
@@ -43,7 +43,8 @@ const projectItem = (project) => {
 
   projectItem.classList.add('project', 'border-R5');
   projectTitle.classList.add('title');
-  projectTitle.innerHTML = `${project}`;
+  projectItem.setAttribute('id', project.get('title'));
+  projectTitle.innerHTML = `${project.get('title')}`;
   projectItem.appendChild(projectTitle);
 
   return projectItem;
@@ -51,10 +52,11 @@ const projectItem = (project) => {
 
 const projectInterface = () => {
   const projects = document.createElement('div');
+  const projectsArr = getProjectsTitle();
 
   projects.classList.add('projects');
   projects.appendChild(addProject());
-  projectsArray.map(project => projects.appendChild(projectItem(project)));
+  projectsArr.map(project => projects.appendChild(projectItem(project)));
 
   return projects;
 };
