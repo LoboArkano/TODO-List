@@ -11,7 +11,7 @@ const todoGetters = (state) => ({
   getPriority() {
     return state.priority;
   },
-  getNotes() {
+  getNote() {
     return state.notes;
   },
 });
@@ -29,7 +29,7 @@ const todoSetters = (state) => ({
   setPriority(priority) {
     state.priority = priority;
   },
-  setNotes(notes) {
+  setNote(notes) {
     state.notes = notes;
   },
 });

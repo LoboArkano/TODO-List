@@ -1,12 +1,12 @@
 // eslint-disable-next-line import/extensions
 import * as tm from './todo-modules.mjs';
 
-const todo = (title, description, dueDate, priority, notes) => {
+const todo = (title, dueDate, priority, description, notes) => {
   const state = {
     title,
-    description,
     dueDate,
     priority,
+    description,
     notes,
   };
 
@@ -15,3 +15,5 @@ const todo = (title, description, dueDate, priority, notes) => {
     ...tm.todoSetters(state),
   };
 };
+
+export default todo;

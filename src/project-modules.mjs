@@ -15,7 +15,7 @@ const projectSetters = (state) => ({
 
 const todosManager = (state) => ({
   addTodo(key, todo) {
-    state.todos[key] = todo;
+    state.todos.set(key, todo);
   },
 });
 

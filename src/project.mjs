@@ -4,7 +4,7 @@ import * as pm from './project-modules.mjs';
 const project = (title) => {
   const state = {
     title,
-    todos: {},
+    todos: new Map(),
   };
 
   return {
@@ -13,3 +13,5 @@ const project = (title) => {
     ...pm.todosManager(state),
   };
 };
+
+export default project;
