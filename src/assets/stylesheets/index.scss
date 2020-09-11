@@ -75,6 +75,7 @@ $crimson: rgb(220, 20, 60);
   height: $header-height;
   text-align: center;
   line-height: $header-height;
+  text-transform: uppercase;
 }
 
 .form-container {
@@ -87,6 +88,7 @@ $crimson: rgb(220, 20, 60);
     padding: 25px;
     background-color: white;
     flex-wrap: wrap;
+    border: 1px solid $dogger-blue;
 
     .label,
     .input {
@@ -94,7 +96,7 @@ $crimson: rgb(220, 20, 60);
     }
 
     .input {
-      padding: 10px 15px;
+      padding: 7px 15px;
       font-weight: bold;
     }
 
