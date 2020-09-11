@@ -19,7 +19,7 @@ const createProject = (btn) => {
   });
 };
 
-const createTodo = (btn) => {
+const createTodo = (btn, id) => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -37,7 +37,7 @@ const createTodo = (btn) => {
     newTodo.description = description.value;
     newTodo.note = note.value;
 
-    LocalStorageModule.saveTodo(newTodo, 'Project 1');
+    LocalStorageModule.saveTodo(newTodo, id);
     formCont.classList.add('d-none');
   });
 };
@@ -48,4 +48,15 @@ const getProjectsTitle = () => {
   return projects;
 };
 
-export { createProject, createTodo, getProjectsTitle };
+const getProject = (key) => {
+  const project = LocalStorageModule.getProject(key);
+
+  return project;
+};
+
+export {
+  createProject,
+  createTodo,
+  getProjectsTitle,
+  getProject,
+};

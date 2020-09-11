@@ -17,10 +17,10 @@ const addProject = () => {
   return addProject;
 };
 
-const addTodo = () => {
+const addTodo = (id) => {
   const addTodo = addBtn('Add Todo');
 
-  createTodo(addTodo);
+  createTodo(addTodo, id);
 
   return addTodo;
 };
@@ -74,7 +74,7 @@ const projectForm = () => {
   return projectFormCont;
 };
 
-const todoForm = () => {
+const todoForm = (id) => {
   const projectFormCont = document.getElementById('project-form-cont');
   const projectForm = document.createElement('form');
   const title = document.createElement('label');
@@ -87,7 +87,7 @@ const todoForm = () => {
   const inputDesc = document.createElement('input');
   const note = document.createElement('label');
   const inputNote = document.createElement('input');
-  const addBtn = addTodo();
+  const addBtn = addTodo(id);
   const cancelBtn = cancel();
   const labels = [title, dueDate, priority, description, note];
   const inputs = [inputTitle, inputDueDate, inputPriority, inputDesc, inputNote];

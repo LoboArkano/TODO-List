@@ -1,7 +1,5 @@
 import { projectForm, todoForm } from './form';
-import { getProjectsTitle } from './controller';
-
-const todosArray = ['todo 1', 'todo 2', 'todo 3'];
+import { getProjectsTitle, getProject } from './controller';
 
 const addProject = () => {
   const addBtn = document.createElement('div');
@@ -20,7 +18,7 @@ const addProject = () => {
   return addBtn;
 };
 
-const addTodo = () => {
+const addTodo = (id) => {
   const addBtn = document.createElement('div');
 
   addBtn.classList.add('todo', 'd-flex', 'border-R5');
@@ -30,11 +28,93 @@ const addTodo = () => {
 
     const formCont = document.getElementById('project-form-cont');
 
-    todoForm();
+    todoForm(id);
     formCont.classList.remove('d-none');
   });
 
   return addBtn;
+};
+
+const todoInfo = (todo) => {
+  const todoInfo = document.createElement('div');
+  const title = document.createElement('p');
+  const status = document.createElement('div');
+  const dueDate = document.createElement('p');
+  const priority = document.createElement('p');
+
+  todoInfo.classList.add('info', 'd-flex', 'justify-between');
+  title.classList.add('title');
+  status.classList.add('status');
+  dueDate.classList.add('dueDate');
+  priority.classList.add('priority');
+  title.innerHTML = `${todo.title}`;
+  dueDate.innerHTML = `${todo.dueDate}`;
+  priority.innerHTML = `${todo.priority}`;
+
+  status.append(dueDate, priority);
+  todoInfo.append(title, status);
+
+  return todoInfo;
+};
+
+const todoDetails = (todo) => {
+  const details = document.createElement('details');
+  const summary = document.createElement('summary');
+  const description = document.createElement('p');
+  const descText = document.createElement('p');
+  const note = document.createElement('p');
+  const noteText = document.createElement('p');
+
+  summary.classList.add('summary', 'border-R5');
+  description.classList.add('description');
+  descText.classList.add('desc-text', 'border-R5');
+  note.classList.add('note');
+  noteText.classList.add('note-text', 'border-R5');
+  summary.innerHTML = 'Click here for more details';
+  description.innerHTML = 'Description:';
+  descText.innerHTML = `${todo.description}`;
+  note.innerHTML = 'Notes:';
+  noteText.innerHTML = `${todo.note}`;
+
+
+  details.append(summary, description, descText, note, noteText);
+
+  return details;
+};
+
+const todoItem = (todo, name) => {
+  const todoItem = document.createElement('div');
+
+  todoItem.classList.add('todo', 'd-flex', 'border-R5');
+  todoItem.setAttribute('id', `${todo.title}`);
+  todoItem.setAttribute('name', `${name}`);
+  todoItem.appendChild(todoInfo(todo));
+  todoItem.appendChild(todoDetails(todo));
+
+  return todoItem;
+};
+
+const todoList = (id) => {
+  const todosCont = document.getElementById('todo-cont');
+  const project = getProject(id);
+  const todos = new Map(project.get('todos'));
+
+  todosCont.innerHTML = '';
+
+  todosCont.appendChild(addTodo(id));
+  todos.forEach((todo) => {
+    todosCont.appendChild(todoItem(todo, id));
+  });
+  // todos.map(todo => todosCont.appendChild(todoItem(todo, project.get('title'))));
+};
+
+const todoCont = () => {
+  const todos = document.createElement('div');
+
+  todos.classList.add('todos');
+  todos.setAttribute('id', 'todo-cont');
+
+  return todos;
 };
 
 const projectItem = (project) => {
@@ -46,6 +126,12 @@ const projectItem = (project) => {
   projectItem.setAttribute('id', project.get('title'));
   projectTitle.innerHTML = `${project.get('title')}`;
   projectItem.appendChild(projectTitle);
+
+  projectItem.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    todoList(projectItem.id);
+  });
 
   return projectItem;
 };
@@ -61,79 +147,12 @@ const projectInterface = () => {
   return projects;
 };
 
-const todoInfo = () => {
-  const todoInfo = document.createElement('div');
-  const title = document.createElement('p');
-  const status = document.createElement('div');
-  const dueDate = document.createElement('p');
-  const priority = document.createElement('p');
-
-  todoInfo.classList.add('info', 'd-flex', 'justify-between');
-  title.classList.add('title');
-  status.classList.add('status');
-  dueDate.classList.add('dueDate');
-  priority.classList.add('priority');
-  title.innerHTML = 'Jump';
-  dueDate.innerHTML = '12/05/2020';
-  priority.innerHTML = 'Low';
-
-  status.append(dueDate, priority);
-  todoInfo.append(title, status);
-
-  return todoInfo;
-};
-
-const todoDetails = () => {
-  const details = document.createElement('details');
-  const summary = document.createElement('summary');
-  const description = document.createElement('p');
-  const descText = document.createElement('p');
-  const note = document.createElement('p');
-  const noteText = document.createElement('p');
-
-  summary.classList.add('summary', 'border-R5');
-  description.classList.add('description');
-  descText.classList.add('desc-text', 'border-R5');
-  note.classList.add('note');
-  noteText.classList.add('note-text', 'border-R5');
-  summary.innerHTML = 'Click here for more details';
-  description.innerHTML = 'Description:';
-  descText.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
-  note.innerHTML = 'Notes:';
-  noteText.innerHTML = 'Donec consequat tellus urna, vestibulum varius est maximus sit amet.';
-
-
-  details.append(summary, description, descText, note, noteText);
-
-  return details;
-};
-
-const todoItem = () => {
-  const todoItem = document.createElement('div');
-
-  todoItem.classList.add('todo', 'd-flex', 'border-R5');
-  todoItem.appendChild(todoInfo());
-  todoItem.appendChild(todoDetails());
-
-  return todoItem;
-};
-
-const todoInterface = () => {
-  const todos = document.createElement('div');
-
-  todos.classList.add('todos');
-  todos.appendChild(addTodo());
-  todosArray.map(todo => todos.appendChild(todoItem(todo)));
-
-  return todos;
-};
-
 const userInterface = () => {
   const userInterface = document.createElement('main');
 
   userInterface.classList.add('main-container', 'w-100', 'd-flex', 'wrap');
   userInterface.appendChild(projectInterface());
-  userInterface.appendChild(todoInterface());
+  userInterface.appendChild(todoCont());
 
   return userInterface;
 };
