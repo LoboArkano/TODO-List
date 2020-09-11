@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { projectForm, todoForm } from './form';
 import { getProjectsTitle, getProject, deleteTodo } from './controller';
 import deleteIcon from './assets/images/trash.png';
@@ -20,7 +21,7 @@ const addProject = () => {
   return addBtn;
 };
 
-const addTodo = (id) => {
+const addTodo = (projectID) => {
   const addBtn = document.createElement('div');
 
   addBtn.classList.add('todo', 'd-flex', 'border-R5');
@@ -30,7 +31,7 @@ const addTodo = (id) => {
 
     const formCont = document.getElementById('project-form-cont');
 
-    todoForm(id);
+    todoForm(null, projectID, addBtn.innerHTML);
     formCont.classList.remove('d-none');
   });
 
@@ -84,7 +85,7 @@ const todoDetails = (todo) => {
   return details;
 };
 
-const deleteBtn = (id, name) => {
+const deleteBtn = (id, projectIDprojectID) => {
   const myDelete = new Image();
   myDelete.src = deleteIcon;
 
@@ -92,48 +93,64 @@ const deleteBtn = (id, name) => {
   myDelete.addEventListener('click', (e) => {
     e.preventDefault();
 
-    deleteTodo(id, name);
+    deleteTodo(id, projectIDprojectID);
   });
 
   return myDelete;
 };
 
-const todoOptions = (id, name) => {
+const editBtn = (id, projectID) => {
+  const myEdit = new Image();
+  myEdit.src = editIcon;
+
+  myEdit.classList.add('icon');
+  myEdit.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const formCont = document.getElementById('project-form-cont');
+
+    todoForm(id, projectID, 'UPDATE TODO');
+    formCont.classList.remove('d-none');
+  });
+
+  return myEdit;
+};
+
+const todoOptions = (id, projectID) => {
   const options = document.createElement('div');
-  const deleteTodo = deleteBtn(id, name);
+  const deleteTodo = deleteBtn(id, projectID);
+  const myEdit = editBtn(id, projectID);
 
   options.classList.add('options', 'd-flex');
 
-  deleteBtn();
-
-  options.append(deleteTodo);
+  options.append(deleteTodo, myEdit);
 
   return options;
 };
 
-const todoItem = (todo, name) => {
+const todoItem = (todo, projectID) => {
   const todoItem = document.createElement('div');
 
   todoItem.classList.add('todo', 'd-flex', 'border-R5');
-  todoItem.setAttribute('id', `${todo.title}`);
-  todoItem.setAttribute('name', `${name}`);
+  todoItem.setAttribute('id', `${todo.id}`);
+  todoItem.setAttribute('name', `${projectID}`);
   todoItem.appendChild(todoInfo(todo));
   todoItem.appendChild(todoDetails(todo));
-  todoItem.appendChild(todoOptions(todo.title, name));
+  todoItem.appendChild(todoOptions(todo.id, projectID));
 
   return todoItem;
 };
 
-const todoList = (id) => {
+const todoList = (projectID) => {
   const todosCont = document.getElementById('todo-cont');
-  const project = getProject(id);
+  const project = getProject(projectID);
   const todos = new Map(project.get('todos'));
 
   todosCont.innerHTML = '';
 
-  todosCont.appendChild(addTodo(id));
+  todosCont.appendChild(addTodo(projectID));
   todos.forEach((todo) => {
-    todosCont.appendChild(todoItem(todo, id));
+    todosCont.appendChild(todoItem(todo, projectID));
   });
 };
 
@@ -186,4 +203,4 @@ const userInterface = () => {
   return userInterface;
 };
 
-export default userInterface;
+export { userInterface, todoList };

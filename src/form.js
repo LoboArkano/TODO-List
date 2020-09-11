@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { createProject, createTodo } from './controller';
 
 const addBtn = (text) => {
@@ -17,10 +18,10 @@ const addProject = () => {
   return addProject;
 };
 
-const addTodo = (id) => {
-  const addTodo = addBtn('Add Todo');
+const addTodo = (todoID, projectID, text) => {
+  const addTodo = addBtn(text);
 
-  createTodo(addTodo, id);
+  createTodo(addTodo, projectID, todoID);
 
   return addTodo;
 };
@@ -74,7 +75,7 @@ const projectForm = () => {
   return projectFormCont;
 };
 
-const todoForm = (id) => {
+const todoForm = (todoID, projectID, text) => {
   const projectFormCont = document.getElementById('project-form-cont');
   const projectForm = document.createElement('form');
   const title = document.createElement('label');
@@ -87,7 +88,7 @@ const todoForm = (id) => {
   const inputDesc = document.createElement('input');
   const note = document.createElement('label');
   const inputNote = document.createElement('input');
-  const addBtn = addTodo(id);
+  const addBtn = addTodo(todoID, projectID, text);
   const cancelBtn = cancel();
   const labels = [title, dueDate, priority, description, note];
   const inputs = [inputTitle, inputDueDate, inputPriority, inputDesc, inputNote];

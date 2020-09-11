@@ -1,6 +1,9 @@
+/* eslint-disable import/no-cycle */
 import project from './project';
 import todo from './todo';
 import LocalStorageModule from './storage';
+
+const crypto = require('crypto');
 
 const createProject = (btn) => {
   btn.addEventListener('click', (e) => {
@@ -19,7 +22,7 @@ const createProject = (btn) => {
   });
 };
 
-const createTodo = (btn, id) => {
+const createTodo = (btn, projectID, todoID) => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -31,13 +34,24 @@ const createTodo = (btn, id) => {
     const note = document.getElementById('todo-note');
     const newTodo = {};
 
+    if (todoID === null) {
+      const secret = title.value;
+      const hash = crypto.createHmac('sha256', secret)
+        .update('Shadows of Mordor')
+        .digest('hex');
+
+      newTodo.id = hash;
+    } else {
+      newTodo.id = todoID;
+    }
+
     newTodo.title = title.value;
     newTodo.dueDate = dueDate.value;
     newTodo.priority = priority.value;
     newTodo.description = description.value;
     newTodo.note = note.value;
 
-    LocalStorageModule.saveTodo(newTodo, id);
+    LocalStorageModule.saveTodo(newTodo, projectID);
     formCont.classList.add('d-none');
   });
 };

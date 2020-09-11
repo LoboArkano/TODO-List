@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-cycle
+import { todoList } from './user-interface';
+
 const LocalStorageModule = (() => {
   const saveProject = (key, project) => {
     localStorage.setItem(key, JSON.stringify(Array.from(project.entries())));
@@ -24,9 +27,10 @@ const LocalStorageModule = (() => {
     const project = new Map(JSON.parse(localStorage.getItem(key)));
     const todos = new Map(project.get('todos'));
 
-    todos.set(todo.title, todo);
+    todos.set(todo.id, todo);
     project.set('todos', Array.from(todos));
     localStorage.setItem(key, JSON.stringify(Array.from(project.entries())));
+    todoList(key);
   };
 
   const deleteTodo = (todoKey, projectKey) => {
@@ -36,6 +40,7 @@ const LocalStorageModule = (() => {
     todos.delete(todoKey);
     project.set('todos', Array.from(todos));
     localStorage.setItem(projectKey, JSON.stringify(Array.from(project.entries())));
+    todoList(projectKey);
   };
 
   return {
