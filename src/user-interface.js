@@ -178,14 +178,14 @@ const projectItem = (project) => {
 
     todoList(projectItem.id);
   });
-  console.log('projectItem');
+
   return projectItem;
 };
 
 const projectRender = () => {
   const projects = document.getElementById('project-cont');
   const projectsArr = getProjectsTitle();
-  console.log('Render');
+
   projects.innerHTML = '';
   projects.appendChild(addProject());
   projectsArr.map(project => projects.appendChild(projectItem(project)));
@@ -193,7 +193,6 @@ const projectRender = () => {
 
 const projectList = (projects) => {
   const projectsArr = getProjectsTitle();
-  console.log('projectList');
 
   projects.appendChild(addProject());
   projectsArr.map(project => projects.appendChild(projectItem(project)));

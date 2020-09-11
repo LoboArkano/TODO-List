@@ -1,6 +1,4 @@
 /* eslint-disable import/no-cycle */
-import project from './project';
-import todo from './todo';
 import LocalStorageModule from './storage';
 
 const crypto = require('crypto');
