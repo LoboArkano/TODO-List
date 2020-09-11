@@ -178,17 +178,34 @@ const projectItem = (project) => {
 
     todoList(projectItem.id);
   });
-
+  console.log('projectItem');
   return projectItem;
 };
 
-const projectInterface = () => {
-  const projects = document.createElement('div');
+const projectRender = () => {
+  const projects = document.getElementById('project-cont');
   const projectsArr = getProjectsTitle();
-
-  projects.classList.add('projects');
+  console.log('Render');
+  projects.innerHTML = '';
   projects.appendChild(addProject());
   projectsArr.map(project => projects.appendChild(projectItem(project)));
+};
+
+const projectList = (projects) => {
+  const projectsArr = getProjectsTitle();
+  console.log('projectList');
+
+  projects.appendChild(addProject());
+  projectsArr.map(project => projects.appendChild(projectItem(project)));
+};
+
+const projectCont = () => {
+  const projects = document.createElement('div');
+
+  projects.classList.add('projects');
+  projects.setAttribute('id', 'project-cont');
+
+  projectList(projects);
 
   return projects;
 };
@@ -197,10 +214,10 @@ const userInterface = () => {
   const userInterface = document.createElement('main');
 
   userInterface.classList.add('main-container', 'w-100', 'd-flex', 'wrap');
-  userInterface.appendChild(projectInterface());
+  userInterface.appendChild(projectCont());
   userInterface.appendChild(todoCont());
 
   return userInterface;
 };
 
-export { userInterface, todoList };
+export { userInterface, todoList, projectRender };

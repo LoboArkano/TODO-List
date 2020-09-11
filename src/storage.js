@@ -1,9 +1,10 @@
 // eslint-disable-next-line import/no-cycle
-import { todoList } from './user-interface';
+import { todoList, projectRender } from './user-interface';
 
 const LocalStorageModule = (() => {
   const saveProject = (key, project) => {
     localStorage.setItem(key, JSON.stringify(Array.from(project.entries())));
+    projectRender();
   };
 
   const deleteProject = (key) => {
