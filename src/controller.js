@@ -42,6 +42,10 @@ const createTodo = (btn, id) => {
   });
 };
 
+const deleteTodo = (todoKey, projectKey) => {
+  LocalStorageModule.deleteTodo(todoKey, projectKey);
+};
+
 const getProjectsTitle = () => {
   const projects = LocalStorageModule.getAllProjects();
 
@@ -57,6 +61,7 @@ const getProject = (key) => {
 export {
   createProject,
   createTodo,
+  deleteTodo,
   getProjectsTitle,
   getProject,
 };

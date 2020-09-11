@@ -53,7 +53,12 @@
 }
 
 .icon {
-  height: 13px;
+  height: 18px;
+  margin-right: 4px;
+}
+
+.icon:hover {
+  cursor: pointer;
 }
 
 .alert-low {
@@ -225,6 +230,13 @@
 .todos .todo details .desc-text:hover,
 .todos .todo details .note-text:hover {
   overflow-y: scroll;
+}
+
+.todos .todo .options {
+  width: 20%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-top: 10px;
 }
 
 @-webkit-keyframes show {

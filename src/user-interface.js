@@ -1,5 +1,7 @@
 import { projectForm, todoForm } from './form';
-import { getProjectsTitle, getProject } from './controller';
+import { getProjectsTitle, getProject, deleteTodo } from './controller';
+import deleteIcon from './assets/images/trash.png';
+import editIcon from './assets/images/edit.svg';
 
 const addProject = () => {
   const addBtn = document.createElement('div');
@@ -65,7 +67,7 @@ const todoDetails = (todo) => {
   const note = document.createElement('p');
   const noteText = document.createElement('p');
 
-  summary.classList.add('summary', 'border-R5');
+  summary.classList.add('summary');
   description.classList.add('description');
   descText.classList.add('desc-text', 'border-R5');
   note.classList.add('note');
@@ -82,6 +84,33 @@ const todoDetails = (todo) => {
   return details;
 };
 
+const deleteBtn = (id, name) => {
+  const myDelete = new Image();
+  myDelete.src = deleteIcon;
+
+  myDelete.classList.add('icon');
+  myDelete.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    deleteTodo(id, name);
+  });
+
+  return myDelete;
+};
+
+const todoOptions = (id, name) => {
+  const options = document.createElement('div');
+  const deleteTodo = deleteBtn(id, name);
+
+  options.classList.add('options', 'd-flex');
+
+  deleteBtn();
+
+  options.append(deleteTodo);
+
+  return options;
+};
+
 const todoItem = (todo, name) => {
   const todoItem = document.createElement('div');
 
@@ -90,6 +119,7 @@ const todoItem = (todo, name) => {
   todoItem.setAttribute('name', `${name}`);
   todoItem.appendChild(todoInfo(todo));
   todoItem.appendChild(todoDetails(todo));
+  todoItem.appendChild(todoOptions(todo.title, name));
 
   return todoItem;
 };
@@ -105,7 +135,6 @@ const todoList = (id) => {
   todos.forEach((todo) => {
     todosCont.appendChild(todoItem(todo, id));
   });
-  // todos.map(todo => todosCont.appendChild(todoItem(todo, project.get('title'))));
 };
 
 const todoCont = () => {

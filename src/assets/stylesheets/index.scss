@@ -51,7 +51,12 @@ $crimson: rgb(220, 20, 60);
 }
 
 .icon {
-  height: 13px;
+  height: 18px;
+  margin-right: 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .alert-low {
@@ -208,6 +213,13 @@ $crimson: rgb(220, 20, 60);
           overflow-y: scroll;
         }
       }
+    }
+
+    .options {
+      width: 20%;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      margin-top: 10px;
     }
   }
 }
