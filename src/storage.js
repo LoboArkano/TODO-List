@@ -7,7 +7,7 @@ const LocalStorageModule = (() => {
     localStorage.removeItem(key);
   };
 
-  const getProject = (key) => JSON.parse(localStorage.getItem(key));
+  const getProject = (key) => new Map(JSON.parse(localStorage.getItem(key)));
 
   const getAllProjects = () => {
     const arrKeys = Object.keys(localStorage);
