@@ -11,12 +11,21 @@ const createProject = (btn) => {
     const title = document.getElementById('project-title');
     const newProject = new Map();
     const todos = [];
+    let msg = '';
 
-    newProject.set('title', title.value);
-    newProject.set('todos', todos);
+    if (title.value.trim() === '') {
+      msg += 'Set a title';
+    }
 
-    LocalStorageModule.saveProject(title.value, newProject);
-    formCont.classList.add('d-none');
+    if (msg.length === 0) {
+      newProject.set('title', title.value);
+      newProject.set('todos', todos);
+
+      LocalStorageModule.saveProject(title.value, newProject);
+      formCont.classList.add('d-none');
+    } else {
+      alert(msg);
+    }
   });
 };
 
@@ -31,26 +40,47 @@ const createTodo = (btn, projectID, todoID) => {
     const description = document.getElementById('todo-desc');
     const note = document.getElementById('todo-note');
     const newTodo = {};
+    let msg = '';
 
-    if (todoID === null) {
-      const secret = title.value;
-      const hash = crypto.createHmac('sha256', secret)
-        .update('Shadows of Mordor')
-        .digest('hex');
-
-      newTodo.id = hash;
-    } else {
-      newTodo.id = todoID;
+    if (title.value.trim() === '') {
+      msg += 'Set a title. ';
+    }
+    if (dueDate.value.trim() === '') {
+      msg += 'Set a due date. ';
+    }
+    if (priority.value.trim() === '') {
+      msg += 'Set a priority. ';
+    }
+    if (description.value.trim() === '') {
+      msg += 'Set a description. ';
+    }
+    if (note.value.trim() === '') {
+      msg += 'Set a note.';
     }
 
-    newTodo.title = title.value;
-    newTodo.dueDate = dueDate.value;
-    newTodo.priority = priority.value;
-    newTodo.description = description.value;
-    newTodo.note = note.value;
+    if (msg.length === 0) {
+      if (todoID === null) {
+        const secret = title.value;
+        const hash = crypto.createHmac('sha256', secret)
+          .update('Shadows of Mordor')
+          .digest('hex');
 
-    LocalStorageModule.saveTodo(newTodo, projectID);
-    formCont.classList.add('d-none');
+        newTodo.id = hash;
+      } else {
+        newTodo.id = todoID;
+      }
+
+      newTodo.title = title.value;
+      newTodo.dueDate = dueDate.value;
+      newTodo.priority = priority.value;
+      newTodo.description = description.value;
+      newTodo.note = note.value;
+
+      LocalStorageModule.saveTodo(newTodo, projectID);
+      formCont.classList.add('d-none');
+    } else {
+      alert(msg);
+    }
   });
 };
 
