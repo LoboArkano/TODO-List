@@ -9,6 +9,10 @@ TODO application to create a project and list the different tasks to be performe
 
 ![image](https://user-images.githubusercontent.com/33432289/92984287-c8c2a200-f46e-11ea-8c66-65afb1e1a5e8.png)
 
+## Live Demo
+
+[Live version](https://todo-list-roberto.netlify.app/)
+
 ## Built With
 
 - HTML5
@@ -21,9 +25,11 @@ TODO application to create a project and list the different tasks to be performe
 
 - Webpack
 
-## Live Demo
+## Future Features
 
-[Live version](https://todo-list-roberto.netlify.app/)
+- Add a delete button for each project
+
+- Display a confirm message when user wants to delete or edit
 
 ## Getting Started
 
@@ -34,11 +40,31 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-- Web browser like Firefox or Chrome
+- npm
+
+- Nodejs
+
+### Setup
+
+Install dependencies with:
+
+```
+    npm install
+```
+
+Save a change with:
+
+```
+   npm run build
+```
+or
+```
+   npm run watch
+```
 
 ### Usage
 
-First click on the ADD PROJECT button. Then click on the new project and add todos.
+First, click on the ADD PROJECT button. Then click on the new project and add todos.
 Click the icons to delete or edit a todo.
 
 ## Author
